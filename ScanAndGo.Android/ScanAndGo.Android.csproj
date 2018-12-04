@@ -54,6 +54,9 @@
     <PackageReference Include="Xamarin.Android.Support.v4" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="27.0.2.1" />
+    <PackageReference Include="ZXing.Net.Mobile">
+      <Version>2.4.1</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -85,6 +88,14 @@
     <AndroidResource Include="Resources\drawable\xamarin_logo.png" />
     <AndroidResource Include="Resources\drawable\ShoppingCart.png" />
     <AndroidResource Include="Resources\drawable\houseoutline.png" />
+    <AndroidResource Include="Resources\drawable\smartphone_scanner.png" />
+    <AndroidResource Include="Resources\drawable\barcode.png" />
+    <AndroidResource Include="Resources\drawable\ic_locate_product.png" />
+    <AndroidResource Include="Resources\drawable\ic_action_home.png" />
+    <AndroidResource Include="Resources\drawable\payment.png" />
+    <AndroidResource Include="Resources\drawable\ic_close.png" />
+    <AndroidResource Include="Resources\drawable\ic_flash_on.png" />
+    <AndroidResource Include="Resources\drawable\ic_flash_off.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-hdpi\" />

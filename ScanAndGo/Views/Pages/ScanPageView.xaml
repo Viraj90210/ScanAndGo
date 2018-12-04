@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+             xmlns:local="clr-namespace:ScanAndGo.Views.Blocks"
+             x:Class="ScanAndGo.Views.Pages.ScanPageView" 
+             BackgroundColor="Transparent"
+             >
+    <ContentPage.Content>
+         <Grid RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"></RowDefinition>
+                     <RowDefinition Height="1"></RowDefinition>
+                     <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+            <FlexLayout Direction="Column" 
+                        Grid.Row="0"
+                        VerticalOptions="EndAndExpand">
+                 <Label Text="Not able to scan barcode?"
+                        TextColor="Gray" Margin="10,10,10,5" ></Label>
+                 <Entry Placeholder="Enter barcode manually"
+                   Text="{Binding BarcodeText}"
+                   Grid.Row="0"
+                   Margin="10,0,10,0"
+                   ReturnCommand="{Binding CompletedCommand}"
+                   >
+            </Entry>
+            </FlexLayout>
+             <BoxView HeightRequest="1" 
+                      BackgroundColor="Gray"
+                      Grid.Row="1"></BoxView>
+                <zxing:ZXingScannerView Grid.Row="2"
+                                        x:Name="scannerView"
+                                        IsScanning="{Binding IsScanning}"
+                                        WidthRequest="200"
+                                        HeightRequest="200"
+                                        IsTorchOn="{Binding FlashOn}"  
+                                        ScanResultCommand="{Binding ScanCompletedCommand}">
+            </zxing:ZXingScannerView>
+            <local:ScannerOverlayView Grid.Row="2"></local:ScannerOverlayView>
+           
+            </Grid>
+    </ContentPage.Content>
+</ContentPage>

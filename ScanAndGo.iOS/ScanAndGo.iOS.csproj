@@ -52,6 +52,7 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignProvision>JDA Wildcard Development</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -124,6 +125,14 @@
     <BundleResource Include="Resources\xamarin_logo%402x.png" />
     <BundleResource Include="Resources\xamarin_logo%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <BundleResource Include="Resources\smartphone_scanner.png" />
+    <BundleResource Include="Resources\barcode.png" />
+    <BundleResource Include="Resources\ic_locate_product.png" />
+    <BundleResource Include="Resources\payment.png" />
+    <BundleResource Include="Resources\ic_action_home.png" />
+    <BundleResource Include="Resources\ic_flash_off.png" />
+    <BundleResource Include="Resources\ic_flash_on.png" />
+    <BundleResource Include="Resources\ic_close.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -133,6 +142,9 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
+    <PackageReference Include="ZXing.Net.Mobile.Forms">
+      <Version>2.4.1</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>

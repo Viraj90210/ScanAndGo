@@ -17,5 +17,36 @@
     <Folder Include="Views\Product\" />
     <Folder Include="ViewModels\Product\" />
     <Folder Include="Views\HeaderView\" />
+    <PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.4.1" />
+    <PackageReference Include="Xamarin.Essentials" Version="0.11.0-preview" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Blocks\" />
+    <Folder Include="Views\Pages\" />
+    <Folder Include="ViewModels\Blocks\" />
+    <Folder Include="ViewModels\Pages\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Views\Blocks\CircularBubbleView.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\Blocks\CircularBubbleView.xaml.cs">
+      <DependentUpon>CircularBubbleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Pages\LandingPageView.xaml.cs">
+      <DependentUpon>LandingPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Pages\ScanPageView.xaml.cs">
+      <DependentUpon>ScanPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Blocks\ScannerOverlayView.xaml.cs">
+      <DependentUpon>ScannerOverlayView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Pages\PaymentBarcodePageView.xaml.cs">
+      <DependentUpon>PaymentBarcodePageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Blocks\BarcodeImageView.xaml.cs">
+      <DependentUpon>BarcodeImageView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

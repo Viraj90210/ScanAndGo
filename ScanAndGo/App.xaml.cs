@@ -2,16 +2,17 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using ScanAndGo.Views;
+using ScanAndGo.Views.Pages;
+using ScanAndGo.ViewModels.Pages;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace ScanAndGo {
     public partial class App : Application {
 
-        public App() {
+        public App()
+        {
             InitializeComponent();
-
-
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new LandingPageView(){BindingContext = new LandingPageViewModel()});
         }
 
         protected override void OnStart() {

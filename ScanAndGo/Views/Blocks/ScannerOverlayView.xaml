@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ScanAndGo.Views.Blocks"
+             x:Class="ScanAndGo.Views.Blocks.ScannerOverlayView">
+    <ContentView.Content>
+        <AbsoluteLayout BackgroundColor="Transparent">
+            <BoxView BackgroundColor="Red" HeightRequest="1" AbsoluteLayout.LayoutFlags="PositionProportional" 
+                     AbsoluteLayout.LayoutBounds="0.1,0.1,100,1"></BoxView>
+            <BoxView BackgroundColor="Red" HeightRequest="1" AbsoluteLayout.LayoutFlags="PositionProportional" 
+                     AbsoluteLayout.LayoutBounds="0.1,0.1,100,1" Rotation="90" TranslationX="-50" TranslationY="50"></BoxView>
+            
+            <BoxView BackgroundColor="Red" HeightRequest="1" AbsoluteLayout.LayoutFlags="PositionProportional" 
+                     AbsoluteLayout.LayoutBounds="0.9,0.1,100,1"></BoxView>
+            <BoxView BackgroundColor="Red" HeightRequest="1" AbsoluteLayout.LayoutFlags="PositionProportional" 
+         AbsoluteLayout.LayoutBounds="0.9,0.1,100,1" Rotation="90" TranslationX="50" TranslationY="50"></BoxView>
+            
+            <BoxView BackgroundColor="Red" HeightRequest="1" AbsoluteLayout.LayoutFlags="PositionProportional" 
+                     AbsoluteLayout.LayoutBounds="0.1,0.9,100,1"></BoxView>
+             <BoxView BackgroundColor="Red" HeightRequest="1" AbsoluteLayout.LayoutFlags="PositionProportional" 
+                 AbsoluteLayout.LayoutBounds="0.1,0.9,100,1" Rotation="-90" TranslationX="-50" TranslationY="-50"></BoxView>
+            
+                <BoxView BackgroundColor="Red" HeightRequest="1" AbsoluteLayout.LayoutFlags="PositionProportional" 
+                     AbsoluteLayout.LayoutBounds="0.9,0.9,100,1"></BoxView>
+                <BoxView BackgroundColor="Red" HeightRequest="1" AbsoluteLayout.LayoutFlags="PositionProportional" 
+                     AbsoluteLayout.LayoutBounds="0.9,0.9,100,1"  Rotation="-90" TranslationX="50" TranslationY="-50"></BoxView>
+             <Frame AbsoluteLayout.LayoutFlags="PositionProportional"
+                  AbsoluteLayout.LayoutBounds="0.5,0.9,50,50"
+                  HasShadow="true"
+                  BackgroundColor="Transparent"
+                  Opacity="0.7"
+                  >
+                <Image Source="{Binding FlashImageSource}"
+                       HeightRequest="50" 
+                       WidthRequest="50" 
+                       Aspect="Fill"
+                       Scale="4"
+                      ></Image>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding FlashCommand}"></TapGestureRecognizer>
+                </Frame.GestureRecognizers>
+            </Frame>
+             <Frame AbsoluteLayout.LayoutFlags="PositionProportional"
+                  AbsoluteLayout.LayoutBounds="0.5,0.99,50,50"
+                  HasShadow="true"
+                  BackgroundColor="Transparent"
+                  Opacity="0.7"
+                  >
+                <Image Source="ic_close"
+                       HeightRequest="50" 
+                       WidthRequest="50" 
+                       Aspect="Fill"
+                       Scale="4"
+                      ></Image>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CloseCommand}"></TapGestureRecognizer>
+                </Frame.GestureRecognizers>
+            </Frame>
+        </AbsoluteLayout>
+    </ContentView.Content>
+</ContentView>
