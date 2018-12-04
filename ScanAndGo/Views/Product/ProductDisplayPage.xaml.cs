@@ -6,11 +6,17 @@ using Xamarin.Forms;
 
 namespace ScanAndGo.Views.Product {
     public partial class ProductDisplayPage : ContentPage {
+
         ProductDisplayViewModel productViewModel;
+
+
         public ProductDisplayPage(string barcodeValue) {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             Title = "Product";
+            if (Device.RuntimePlatform == Device.iOS) {
+                Icon = "ProductIcon.png";
+            }
             productViewModel = new ProductDisplayViewModel(Navigation, this);
             BindingContext = productViewModel;
             productViewModel.GetProductInfo(barcodeValue);
@@ -45,13 +51,19 @@ namespace ScanAndGo.Views.Product {
             }
         }
 
-        async void Handle_TappedTA(object sender, System.EventArgs e) {
+        void Handle_TappedTA(object sender, System.EventArgs e) {
             DeliveryRadio.Source = "RadioUncheck.png";
             TakeAwayRadio.Source = "RadioCheck.png";
             lblTakeAway.TextColor = (Color)Application.Current.Resources["FadedBlue"];
             lblDelivery.TextColor = Color.Black;
-            //await btnAddToCart.ScaleTo(1.5, 1000);
-            //await btnAddToCart.RelScaleTo(-0.5, 1000);
+            ShakeAnimation();
+        }
+
+        void Handle_TappedDL(object sender, System.EventArgs e) {
+            TakeAwayRadio.Source = "RadioUncheck.png";
+            DeliveryRadio.Source = "RadioCheck.png";
+            lblTakeAway.TextColor = Color.Black;
+            lblDelivery.TextColor = (Color)Application.Current.Resources["FadedBlue"];
             ShakeAnimation();
         }
 
@@ -69,13 +81,6 @@ namespace ScanAndGo.Views.Product {
             await btnAddToCart.RotateTo(0, 50);
         }
 
-        void Handle_TappedDL(object sender, System.EventArgs e) {
-            TakeAwayRadio.Source = "RadioUncheck.png";
-            DeliveryRadio.Source = "RadioCheck.png";
-            lblTakeAway.TextColor = Color.Black;
-            lblDelivery.TextColor = (Color)Application.Current.Resources["FadedBlue"];
-        }
-
         void IncreaseQuantity(object sender, System.EventArgs e) {
             int value = Convert.ToInt32(lblQuantity.Text);
             if (value == 10) {
@@ -84,6 +89,10 @@ namespace ScanAndGo.Views.Product {
                 value++;
                 lblQuantity.Text = value.ToString();
             }
+        }
+
+        void AddItemToCart(object sender, System.EventArgs e) {
+
         }
     }
 }

@@ -75,7 +75,7 @@
                             </StackLayout>
                         </StackLayout>
                         <BoxView HeightRequest="10" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent"/>
-                        <Button x:Name="btnAddToCart" Text="  Add to Cart  " FontFamily="{StaticResource BangersFont}" FontSize="Large" TextColor="White" HorizontalOptions="Center" BackgroundColor="{StaticResource FadedBlue}"/>
+                        <Button x:Name="btnAddToCart" Clicked="AddItemToCart" Text="  Add to Cart  " FontFamily="{StaticResource BangersFont}" FontSize="Large" TextColor="White" HorizontalOptions="Center" BackgroundColor="{StaticResource FadedBlue}"/>
                         <!--<StackLayout HorizontalOptions="Center" BackgroundColor="{StaticResource FadedBlue}" HeightRequest="50" Orientation="Horizontal">
                             //<Image Source="AddToCartIcon.png" HeightRequest="40" WidthRequest="40" HorizontalOptions="Start" VerticalOptions="Center" />
                             <Label Text="Add to Cart" />

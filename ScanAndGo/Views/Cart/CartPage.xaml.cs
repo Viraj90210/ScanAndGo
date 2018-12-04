@@ -8,6 +8,9 @@ namespace ScanAndGo.Views.Cart {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             Title = "Cart";
+            if (Device.RuntimePlatform == Device.iOS) {
+                Icon = "CartIcon.png";
+            }
             cartPageViewModel = new CartPageViewModel(Navigation, this);
             BindingContext = cartPageViewModel;
         }

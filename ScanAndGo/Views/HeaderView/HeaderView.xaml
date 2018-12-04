@@ -9,7 +9,7 @@
                 </OnIdiom>
             </StackLayout.HeightRequest>
             
-            <StackLayout HorizontalOptions="Start" WidthRequest="65" VerticalOptions="FillAndExpand" Padding="10,0,0,0" Spacing="0">
+            <StackLayout HorizontalOptions="Start" WidthRequest="65" VerticalOptions="FillAndExpand" Padding="0,0,0,0" Spacing="0">
                 <StackLayout.WidthRequest>
                     <OnIdiom x:TypeArguments="x:Double">
                         <OnIdiom.Phone>65</OnIdiom.Phone>
