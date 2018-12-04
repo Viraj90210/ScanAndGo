@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ScanAndGo.Views.HeaderView.HeaderView">
     <ContentView.Content>
-        <StackLayout x:Name="MainLayout" Orientation="Horizontal" Spacing="0" HorizontalOptions="Fill" VerticalOptions="Start">
+        <StackLayout x:Name="MainLayout" Orientation="Horizontal" Spacing="0" HorizontalOptions="Fill" VerticalOptions="Start" Padding="0,20,0,0">
             <StackLayout.HeightRequest>
                 <OnIdiom x:TypeArguments="x:Double">
                     <OnIdiom.Phone>50</OnIdiom.Phone>
@@ -32,7 +32,11 @@
                         <OnIdiom.Tablet>100</OnIdiom.Tablet>
                     </OnIdiom>
                 </StackLayout.WidthRequest>
-                <Button Text="Refresh" IsVisible="{Binding ShowRefreshBtn}" VerticalOptions="Center" Command="{Binding ClickRefresh}" />
+                <Image x:Name="CartImg" Source="ShoppingCart.png" VerticalOptions="CenterAndExpand" HeightRequest="35">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ClickBack}" />
+                    </Image.GestureRecognizers>
+                </Image>
             </StackLayout>
         </StackLayout>
     </ContentView.Content>

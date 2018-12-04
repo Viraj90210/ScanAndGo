@@ -9,9 +9,12 @@
                 <Setter Property="BarTextColor" Value="White" />
             </Style>
             
+            <Color x:Key="LightGray">#c7c7c7</Color>
+            <Color x:Key="FadedBlue">#076FB4</Color>
+            
             <OnPlatform x:Key="BangersFont" x:TypeArguments="x:String">
                 <On Platform="Android" Value="Bangers-Regular.ttf#Bangers-Regular"/>
-                <On Platform="iOS" Value="sentinel-light"/>
+                <On Platform="iOS" Value="Bangers-Regular"/>
             </OnPlatform>
             
         </ResourceDictionary>

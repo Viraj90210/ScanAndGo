@@ -3,9 +3,23 @@
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             android:TabbedPage.ToolbarPlacement="Bottom"
             xmlns:views="clr-namespace:ScanAndGo.Views" x:Class="ScanAndGo.Views.MainPage"
-            xmlns:local="clr-namespace:ScanAndGo.Views.Product">
+            xmlns:Product="clr-namespace:ScanAndGo.Views.Product"
+            xmlns:Cart="clr-namespace:ScanAndGo.Views.Cart">
     <TabbedPage.Children>
-        <NavigationPage Title="Browse">
+        
+        <NavigationPage Title="Product">
+            <NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="tab_about.png" />
+                </OnPlatform>
+            </NavigationPage.Icon>
+            <x:Arguments>
+                <Product:ProductDisplayPage />
+            </x:Arguments>
+        </NavigationPage>
+        
+        
+        <!--<NavigationPage Title="Browse">
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="tab_feed.png" />
@@ -14,26 +28,19 @@
             <x:Arguments>
                 <views:ItemsPage />
             </x:Arguments>
-        </NavigationPage>
-        <NavigationPage Title="About">
+        </NavigationPage>-->
+        
+        
+        <NavigationPage Title="My Cart">
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="tab_about.png" />
                 </OnPlatform>
             </NavigationPage.Icon>
             <x:Arguments>
-                <views:AboutPage />
+                <Cart:CartPage/>
             </x:Arguments>
         </NavigationPage>
-        <NavigationPage Title="Product">
-            <NavigationPage.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="iOS" Value="tab_about.png" />
-                </OnPlatform>
-            </NavigationPage.Icon>
-            <x:Arguments>
-                <local:ProductDisplayPage />
-            </x:Arguments>
-        </NavigationPage>
+        
     </TabbedPage.Children>
 </TabbedPage>

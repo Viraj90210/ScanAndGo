@@ -1,5 +1,4 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using System.Collections.Generic;
 
 namespace ScanAndGo.Models {
     public class ProductModel {
@@ -11,6 +10,6 @@ namespace ScanAndGo.Models {
         public string name { get; set; }
         public string type { get; set; }
         public int price { get; set; }
-        public Size size { get; set; }
+        public List<Size> sizes { get; set; }
     }
 }

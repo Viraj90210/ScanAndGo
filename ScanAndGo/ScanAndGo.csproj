@@ -48,5 +48,7 @@
     <Compile Update="Views\Blocks\BarcodeImageView.xaml.cs">
       <DependentUpon>BarcodeImageView.xaml</DependentUpon>
     </Compile>
+    <Folder Include="Views\Cart\" />
+    <Folder Include="ViewModels\Cart\" />
   </ItemGroup>
 </Project>

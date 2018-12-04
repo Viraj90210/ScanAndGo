@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using ScanAndGo.ViewModels.Product;
 using Xamarin.Forms;
 
@@ -10,7 +12,7 @@ namespace ScanAndGo.Views.Product {
             NavigationPage.SetHasNavigationBar(this, false);
             productViewModel = new ProductDisplayViewModel(Navigation, this);
             BindingContext = productViewModel;
-            productViewModel.GetProductInfo("z09JQhmQAUzuxhqurSAM");
+            productViewModel.GetProductInfo("uY8YBuF7W9mm0GATX4Ra");
         }
 
         void DecreaseQuantity(object sender, System.EventArgs e) {
@@ -21,6 +23,56 @@ namespace ScanAndGo.Views.Product {
                 value--;
                 lblQuantity.Text = value.ToString();
             }
+        }
+
+        public void AddButtonsToScroll(ICollection<View> data) {
+            foreach (var btn in data) {
+                ButtonBar.Children.Add(btn);
+            }
+        }
+
+        //public void SizeSelected(object sender, System.EventArgs w) {
+        //    var btn = (Button)sender;
+        //    ResetBtnColors();
+        //    btn.BackgroundColor = (Color)Application.Current.Resources["FadedBlue"];
+        //    btn.TextColor = Color.White;
+        //}
+
+        public void ResetBtnColors() {
+            foreach (View i in ((StackLayout)ButtonBar).Children.Where(x => x.GetType() == typeof(Button))) {
+                i.BackgroundColor = (Color)Application.Current.Resources["LightGray"];
+            }
+        }
+
+        async void Handle_TappedTA(object sender, System.EventArgs e) {
+            DeliveryRadio.Source = "RadioUncheck.png";
+            TakeAwayRadio.Source = "RadioCheck.png";
+            lblTakeAway.TextColor = (Color)Application.Current.Resources["FadedBlue"];
+            lblDelivery.TextColor = Color.Black;
+            //await btnAddToCart.ScaleTo(1.5, 1000);
+            //await btnAddToCart.RelScaleTo(-0.5, 1000);
+            ShakeAnimation();
+        }
+
+        async void ShakeAnimation() {
+            await btnAddToCart.RotateTo(5, 50);
+            await btnAddToCart.RotateTo(-5, 50);
+            await btnAddToCart.RotateTo(5, 50);
+            await btnAddToCart.RotateTo(-5, 50);
+            await btnAddToCart.RotateTo(5, 50);
+            await btnAddToCart.RotateTo(-5, 50);
+            await btnAddToCart.RotateTo(5, 50);
+            await btnAddToCart.RotateTo(-5, 50);
+            await btnAddToCart.RotateTo(5, 50);
+            await btnAddToCart.RotateTo(-5, 50);
+            await btnAddToCart.RotateTo(0, 50);
+        }
+
+        void Handle_TappedDL(object sender, System.EventArgs e) {
+            TakeAwayRadio.Source = "RadioUncheck.png";
+            DeliveryRadio.Source = "RadioCheck.png";
+            lblTakeAway.TextColor = Color.Black;
+            lblDelivery.TextColor = (Color)Application.Current.Resources["FadedBlue"];
         }
 
         void IncreaseQuantity(object sender, System.EventArgs e) {
