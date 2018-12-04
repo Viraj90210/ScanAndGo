@@ -11,6 +11,7 @@ namespace ScanAndGo.Views.Pages
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+            Title = "Scan";
         }
     }
 }

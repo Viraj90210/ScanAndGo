@@ -139,7 +139,6 @@
     <BundleResource Include="Resources\houseoutline.png" />
     <BundleResource Include="Resources\ShoppingCart.png" />
     <BundleResource Include="Resources\AddToCartIcon.png" />
->>>>>>> 6d81382... modified product page
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

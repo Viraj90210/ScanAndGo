@@ -1,5 +1,6 @@
 ﻿using System;
 using ScanAndGo.ViewModels.Blocks;
+using ScanAndGo.Views;
 using ScanAndGo.Views.Pages;
 using Xamarin.Forms;
 
@@ -58,10 +59,11 @@ namespace ScanAndGo.ViewModels.Pages
         {
            try
             {
-                Application.Current.MainPage.Navigation.PushAsync(new PaymentBarcodePageView()
+                /*Application.Current.MainPage.Navigation.PushAsync(new PaymentBarcodePageView()
                 {
                     BindingContext = new PaymentBarcodePageViewModel(barcodeValue)
-                });
+                });*/
+                Application.Current.MainPage.Navigation.PushAsync(new MainPage(barcodeValue));
                 scanPageViewModel.BarcodeScanned -= ScanPageViewModel_BarcodeScanned;
             }
             catch (Exception ex)

@@ -5,9 +5,9 @@
             xmlns:views="clr-namespace:ScanAndGo.Views" x:Class="ScanAndGo.Views.MainPage"
             xmlns:Product="clr-namespace:ScanAndGo.Views.Product"
             xmlns:Cart="clr-namespace:ScanAndGo.Views.Cart">
-    <TabbedPage.Children>
+    <!--<TabbedPage.Children>
         
-        <NavigationPage Title="Product">
+       <NavigationPage Title="Product">
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="tab_about.png" />
@@ -16,8 +16,7 @@
             <x:Arguments>
                 <Product:ProductDisplayPage />
             </x:Arguments>
-        </NavigationPage>
-        
+        </NavigationPage>-->
         
         <!--<NavigationPage Title="Browse">
             <NavigationPage.Icon>
@@ -31,7 +30,7 @@
         </NavigationPage>-->
         
         
-        <NavigationPage Title="My Cart">
+        <!--<NavigationPage Title="My Cart">
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="tab_about.png" />
@@ -42,5 +41,5 @@
             </x:Arguments>
         </NavigationPage>
         
-    </TabbedPage.Children>
+    </TabbedPage.Children>-->
 </TabbedPage>

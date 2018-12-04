@@ -7,9 +7,9 @@ namespace ScanAndGo.Views.Cart {
         public CartPage() {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+            Title = "Cart";
             cartPageViewModel = new CartPageViewModel(Navigation, this);
             BindingContext = cartPageViewModel;
-
         }
     }
 }

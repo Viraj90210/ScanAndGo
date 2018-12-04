@@ -7,12 +7,13 @@ using Xamarin.Forms;
 namespace ScanAndGo.Views.Product {
     public partial class ProductDisplayPage : ContentPage {
         ProductDisplayViewModel productViewModel;
-        public ProductDisplayPage() {
+        public ProductDisplayPage(string barcodeValue) {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+            Title = "Product";
             productViewModel = new ProductDisplayViewModel(Navigation, this);
             BindingContext = productViewModel;
-            productViewModel.GetProductInfo("uY8YBuF7W9mm0GATX4Ra");
+            productViewModel.GetProductInfo(barcodeValue);
         }
 
         void DecreaseQuantity(object sender, System.EventArgs e) {
