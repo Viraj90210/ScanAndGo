@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:local="clr-namespace:ScanAndGo.Views.HeaderView" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ScanAndGo.Views.Product.ProductDisplayPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout x:Name="MainLayout" Padding="5,0,2,0">
+                <local:HeaderView />
+                <StackLayout x:Name="ProductImgLayout">
+                    <StackLayout>
+                        <Image Source="{Binding ProductImg}" Aspect="AspectFit" />
+                    </StackLayout>
+                    <StackLayout Spacing="2">
+                        <Label Text="{Binding ProductName}" FontFamily="{StaticResource BangersFont}" FontSize="Medium" />
+                        <Label Text="{Binding ProductType}" FontFamily="{StaticResource BangersFont}" FontSize="Medium" />
+<!--                        <Label Text="{Binding ProductExtraDesc}" FontFamily="{StaticResource BangersFont}" FontSize="Medium" />-->
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout>
+                    <StackLayout x:Name="SizeLayout" HorizontalOptions="Fill" HeightRequest="90" BackgroundColor="Red">
+                        <Label Text="SIZE" FontFamily="{StaticResource BangersFont}" FontSize="Large" />
+                        <ScrollView Orientation="Horizontal">
+                            <StackLayout Orientation="Horizontal" HeightRequest="90" BackgroundColor="Blue" Spacing="5">
+                                <Button Text="UK 4 - EU 37" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="40" />
+                                <Button Text="UK 5 - EU 40" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="40" />
+                                <Button Text="UK 6 - EU 42" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="40" />
+                                <Button Text="UK 7 - EU 44" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="40" />
+                                <Button Text="UK 8 - EU 46" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="40" />
+                            </StackLayout>
+                        </ScrollView>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="QUANTITY" FontFamily="{StaticResource BangersFont}" FontSize="Large" />
+                        <StackLayout HeightRequest="50" Orientation="Horizontal" Spacing="0">
+                            <Button Text="-" FontFamily="{StaticResource BangersFont}" FontSize="Large" WidthRequest="50" Clicked="DecreaseQuantity" />
+                            <StackLayout WidthRequest="50" BackgroundColor="Red">
+                                <Label x:Name="lblQuantity" Text="1" FontFamily="{StaticResource BangersFont}" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                            </StackLayout>
+                            <Button Text="+" FontFamily="{StaticResource BangersFont}" FontSize="Large" WidthRequest="50" Clicked="IncreaseQuantity" />
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="CONVENIENCE" FontFamily="{StaticResource BangersFont}" FontSize="Large" />
+                        <StackLayout Orientation="Horizontal">
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

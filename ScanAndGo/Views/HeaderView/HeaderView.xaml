@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ScanAndGo.Views.HeaderView.HeaderView">
+    <ContentView.Content>
+        <StackLayout x:Name="MainLayout" Orientation="Horizontal" Spacing="0" HorizontalOptions="Fill" VerticalOptions="Start">
+            <StackLayout.HeightRequest>
+                <OnIdiom x:TypeArguments="x:Double">
+                    <OnIdiom.Phone>50</OnIdiom.Phone>
+                    <OnIdiom.Tablet>80</OnIdiom.Tablet>
+                </OnIdiom>
+            </StackLayout.HeightRequest>
+            
+            <StackLayout HorizontalOptions="Start" WidthRequest="65" VerticalOptions="FillAndExpand" Padding="10,0,0,0" Spacing="0">
+                <StackLayout.WidthRequest>
+                    <OnIdiom x:TypeArguments="x:Double">
+                        <OnIdiom.Phone>65</OnIdiom.Phone>
+                        <OnIdiom.Tablet>100</OnIdiom.Tablet>
+                    </OnIdiom>
+                </StackLayout.WidthRequest>
+                <Image x:Name="backBtn" Source="houseoutline.png" VerticalOptions="CenterAndExpand" HeightRequest="35">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ClickBack}" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </StackLayout>
+            
+            <BoxView HorizontalOptions="FillAndExpand"/>
+            
+            <StackLayout HorizontalOptions="End" Orientation="Horizontal">
+                <StackLayout.WidthRequest>
+                    <OnIdiom x:TypeArguments="x:Double">
+                        <OnIdiom.Phone>65</OnIdiom.Phone>
+                        <OnIdiom.Tablet>100</OnIdiom.Tablet>
+                    </OnIdiom>
+                </StackLayout.WidthRequest>
+                <Button Text="Refresh" IsVisible="{Binding ShowRefreshBtn}" VerticalOptions="Center" Command="{Binding ClickRefresh}" />
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>
