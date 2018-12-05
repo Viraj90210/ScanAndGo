@@ -98,6 +98,9 @@
     <AndroidResource Include="Resources\drawable\ic_flash_off.png" />
     <AndroidResource Include="Resources\drawable\RadioCheck.png" />
     <AndroidResource Include="Resources\drawable\RadioUncheck.png" />
+    <AndroidResource Include="Resources\drawable\ic_add.png" />
+    <AndroidResource Include="Resources\drawable\caret_right.png" />
+    <AndroidResource Include="Resources\drawable\ic_address.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-hdpi\" />

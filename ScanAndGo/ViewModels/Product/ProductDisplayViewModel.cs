@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Input;
 using ScanAndGo.Models;
 using ScanAndGo.Services;
 using ScanAndGo.Views.Product;
@@ -55,6 +56,10 @@ namespace ScanAndGo.ViewModels.Product {
         public ProductDisplayViewModel(INavigation navigation, ProductDisplayPage productPage) {
             productPageRef = productPage;
             navigationRef = navigation;
+            AddToCartCommand = new Command(() =>
+            {
+
+            });
         }
 
         internal async void GetProductInfo(string ID) {
@@ -68,6 +73,12 @@ namespace ScanAndGo.ViewModels.Product {
             } catch (Exception ex) {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        public ICommand AddToCartCommand
+        {
+            get;
+            set;
         }
     }
 }

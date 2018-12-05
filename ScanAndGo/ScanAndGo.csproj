@@ -52,5 +52,20 @@
     </Compile>
     <Folder Include="Views\Cart\" />
     <Folder Include="ViewModels\Cart\" />
+    <Compile Update="Views\Blocks\CartListBlockView.xaml.cs">
+      <DependentUpon>CartListBlockView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Views\Blocks\CartListBlockView.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Views\Blocks\CartListBlockView.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Blocks\CartListBlockView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
