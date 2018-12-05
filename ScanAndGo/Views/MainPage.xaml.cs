@@ -1,7 +1,4 @@
-﻿using System;
-using ScanAndGo.Views.Cart;
-using ScanAndGo.Views.Pages;
-using ScanAndGo.Views.Product;
+﻿using ScanAndGo.Views.Product;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,7 +9,6 @@ namespace ScanAndGo.Views {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             Children.Add(new ProductDisplayPage(barcodeValue));
-            Children.Add(new CartPage());
             Children.Add(new AboutPage());
         }
     }

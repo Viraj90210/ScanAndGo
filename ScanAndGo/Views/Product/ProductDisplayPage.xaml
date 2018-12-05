@@ -10,15 +10,20 @@
                             <Image Source="{Binding ProductImg}" HeightRequest="150" />
                         </StackLayout>
                         <StackLayout Spacing="2" BackgroundColor="#f2f2f2" Padding="0,5,0,5">
-                            <Label Text="{Binding ProductName}" FontFamily="{StaticResource BangersFont}" FontSize="Large" />
-                            <Label Text="{Binding ProductType}" FontFamily="{StaticResource BangersFont}" FontSize="Medium" />
-                            <!--<Label Text="{Binding ProductExtraDesc}" FontFamily="{StaticResource BangersFont}" FontSize="Medium" />-->
+                            <Label Text="{Binding ProductName}" FontSize="Large" />
+                            <Label Text="{Binding ProductType}" FontSize="Medium" />
+                            <!--<Label Text="{Binding ProductExtraDesc}"  FontSize="Medium" />-->
                         </StackLayout>
                     </StackLayout>
-                    <BoxView HeightRequest="10" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" />
+                    <StackLayout Orientation="Horizontal" Spacing="10">
+                        <Label Text="{Binding ProductFinalPrice}" FontAttributes="Bold" FontSize="Large"/>
+                        <Label Text="{Binding ProductMRP}" FontAttributes="Italic" FontSize="Medium" />
+                        <Label Text="{Binding ProductDiscountPrice}" FontAttributes="Italic" FontSize="Medium" />
+                    </StackLayout>
+                    <BoxView HeightRequest="7" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" />
                     <StackLayout>
                         <StackLayout x:Name="SizeLayout" HorizontalOptions="Fill">
-                            <Label Text="SIZE" FontFamily="{StaticResource BangersFont}" FontSize="Medium" />
+                            <Label Text="Size"  FontSize="Medium" />
                             <ScrollView Orientation="Horizontal">
                                 <StackLayout x:Name="ButtonBar" VerticalOptions="Center" Orientation="Horizontal" Spacing="10">
                                     <!--<Button ClassId="btnSize" TextColor="Black" BackgroundColor="{StaticResource LightGray}" Clicked="SizeSelected" Text=" UK 4 - EU 37 " VerticalOptions="Center" HorizontalOptions="Start" />
@@ -31,30 +36,30 @@
                         </StackLayout>
                         <BoxView HeightRequest="10" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" />
                         <StackLayout>
-                            <Label Text="QUANTITY" FontFamily="{StaticResource BangersFont}" FontSize="Medium" />
+                            <Label Text="Quantity" FontSize="Medium" />
                             <StackLayout HeightRequest="40" Orientation="Horizontal" Spacing="2">
                                 <!--<Button WidthRequest="40" Clicked="DecreaseQuantity"/>-->
                                 <StackLayout WidthRequest="40" BackgroundColor="{StaticResource LightGray}">
-                                    <Label x:Name="lblDecrease" Text="-" FontFamily="{StaticResource BangersFont}" FontSize="Large" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                    <Label x:Name="lblDecrease" Text="-"  FontSize="Large" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                                     <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="DecreaseQuantity" NumberOfTapsRequired="1" />
+                                        <TapGestureRecognizer Command="{Binding DecreaseQuantity}" NumberOfTapsRequired="1" />
                                     </StackLayout.GestureRecognizers>
                                 </StackLayout>
                                 <StackLayout WidthRequest="40" BackgroundColor="{StaticResource FadedBlue}">
-                                    <Label x:Name="lblQuantity" TextColor="White" Text="1" FontFamily="{StaticResource BangersFont}" VerticalOptions="CenterAndExpand" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                    <Label x:Name="lblQuantity" TextColor="White" Text="{Binding Quantity}"  VerticalOptions="CenterAndExpand" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                                 </StackLayout>
                                 <StackLayout WidthRequest="40" BackgroundColor="{StaticResource LightGray}">
-                                    <Label x:Name="lblIncrease" Text="+" FontFamily="{StaticResource BangersFont}" FontSize="Large" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                    <Label x:Name="lblIncrease" Text="+"  FontSize="Large" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                                     <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="IncreaseQuantity" NumberOfTapsRequired="1" />
+                                        <TapGestureRecognizer Command="{Binding IncreaseQuantity}" NumberOfTapsRequired="1" />
                                     </StackLayout.GestureRecognizers>
                                 </StackLayout>
-                                <!--<Button Text="+" FontFamily="{StaticResource BangersFont}" FontSize="Large" WidthRequest="40" Clicked="IncreaseQuantity"/>-->
+                                <!--<Button Text="+"  FontSize="Large" WidthRequest="40" Clicked="IncreaseQuantity"/>-->
                             </StackLayout>
                         </StackLayout>
                         <BoxView HeightRequest="10" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" />
                         <StackLayout>
-                            <Label Text="CONVENIENCE" FontFamily="{StaticResource BangersFont}" FontSize="Medium" />
+                            <Label Text="Convenience"  FontSize="Medium" />
                             <StackLayout HorizontalOptions="Start" Orientation="Horizontal" Spacing="15">
                                 <StackLayout Orientation="Horizontal" Padding="5,0,5,0">
                                     <Image ClassId="0" x:Name="TakeAwayRadio" Source="RadioCheck.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="Start">
@@ -62,7 +67,7 @@
                                             <TapGestureRecognizer Tapped="Handle_TappedTA" />
                                         </Image.GestureRecognizers>
                                     </Image>
-                                    <Label x:Name="lblTakeAway" TextColor="{StaticResource FadedBlue}" Text="TAKE AWAY" FontFamily="{StaticResource BangersFont}" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                    <Label x:Name="lblTakeAway" TextColor="{StaticResource FadedBlue}" Text="Take Away"  FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                                 </StackLayout>
                                 <StackLayout HorizontalOptions="Start" Orientation="Horizontal" Padding="5,0,5,0">
                                     <Image x:Name="DeliveryRadio" Source="RadioUncheck.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="Start">
@@ -70,12 +75,12 @@
                                             <TapGestureRecognizer Tapped="Handle_TappedDL" />
                                         </Image.GestureRecognizers>
                                     </Image>
-                                    <Label x:Name="lblDelivery" Text="DELIVERY" FontFamily="{StaticResource BangersFont}" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                    <Label x:Name="lblDelivery" Text="Delivery"  FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                                 </StackLayout>
                             </StackLayout>
                         </StackLayout>
-                        <BoxView HeightRequest="10" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent"/>
-                        <Button x:Name="btnAddToCart" Command="{Binding AddToCartCommand}" Text="  Add to Cart  " FontFamily="{StaticResource BangersFont}" FontSize="Large" TextColor="White" HorizontalOptions="Center" BackgroundColor="{StaticResource FadedBlue}"/>
+                        <BoxView HeightRequest="10" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" />
+                        <Button x:Name="btnAddToCart" Command="{Binding AddToCartCommand}" Text="  Add to Cart  "  FontSize="Large" TextColor="White" HorizontalOptions="Center" BackgroundColor="{StaticResource FadedBlue}" />
                         <!--<StackLayout HorizontalOptions="Center" BackgroundColor="{StaticResource FadedBlue}" HeightRequest="50" Orientation="Horizontal">
                             //<Image Source="AddToCartIcon.png" HeightRequest="40" WidthRequest="40" HorizontalOptions="Start" VerticalOptions="Center" />
                             <Label Text="Add to Cart" />

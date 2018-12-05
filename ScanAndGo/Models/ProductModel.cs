@@ -9,5 +9,8 @@ namespace ScanAndGo.Models {
         public List<Variant> variants { get; set; }
         public bool IsSuccess { get; set; }
         public string ScannedBarcode { get; set; }
+        public string Price { get; set; }
+        public string Quantity { get; set; }
+        public string SelectedSize { get; set; }
     }
 }

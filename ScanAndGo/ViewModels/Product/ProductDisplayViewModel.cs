@@ -23,6 +23,72 @@ namespace ScanAndGo.ViewModels.Product {
             set { SetProperty(ref _productName, value, "ProductName"); }
         }
 
+        string _productFinalPrice;
+        public string ProductFinalPrice {
+            get { return _productFinalPrice; }
+            set { SetProperty(ref _productFinalPrice, "Rs: " + value + "/- ", "ProductFinalPrice"); }
+        }
+
+        string _productDiscount;
+        public string ProductDiscountPrice {
+            get { return _productDiscount; }
+            set { SetProperty(ref _productDiscount, value, "ProductDiscountPrice"); }
+        }
+
+        string _productMRP;
+        public string ProductMRP {
+            get { return _productMRP; }
+            set { SetProperty(ref _productMRP, value, "ProductMRP"); }
+        }
+
+        TextDecorations _textDeco = TextDecorations.None;
+        public TextDecorations TextDeco {
+            get { return _textDeco; }
+            set { SetProperty(ref _textDeco, value, "TextDeco"); }
+        }
+
+        private int IntQuatity = 1;
+
+        string _Quantity = "1";
+        public string Quantity {
+            get { return _Quantity; }
+            set { SetProperty(ref _Quantity, value, "Quantity"); }
+        }
+
+        Command DecreaseQuantityCommand;
+        public Command DecreaseQuantity {
+            get {
+                return DecreaseQuantityCommand ?? (DecreaseQuantityCommand = new Command(ExecuteDecreaseQuantity));
+            }
+        }
+
+        Command IncreaseQuantityCommand;
+        public Command IncreaseQuantity {
+            get {
+                return IncreaseQuantityCommand ?? (IncreaseQuantityCommand = new Command(ExecuteIncreaseQuantity));
+            }
+        }
+
+        void ExecuteDecreaseQuantity(object obj) {
+            if (IntQuatity == 1) {
+                return;
+            } else {
+                IntQuatity--;
+                Quantity = IntQuatity.ToString();
+                product.Quantity = Quantity;
+            }
+        }
+
+        void ExecuteIncreaseQuantity(object obj) {
+            if (IntQuatity == 10) {
+                return;
+            } else {
+                IntQuatity++;
+                Quantity = IntQuatity.ToString();
+                product.Quantity = Quantity;
+            }
+        }
+
         Command ClickBackCommand;
         public Command ClickBack {
             get {
@@ -46,6 +112,20 @@ namespace ScanAndGo.ViewModels.Product {
                 };
                 if (product.ScannedBarcode.Equals(sizeBtn.barcode)) {
                     btn.BackgroundColor = (Color)Application.Current.Resources["FadedBlue"];
+                    if (sizeBtn.discount_amount == null) {
+                        ProductFinalPrice = sizeBtn.net_price.ToString();
+                        product.Price = ProductFinalPrice;
+                    } else {
+                        ProductFinalPrice = sizeBtn.net_price.ToString();
+                        if (sizeBtn.discount_amount > 0) {
+                            ProductMRP = sizeBtn.price.ToString();
+                            ProductDiscountPrice = sizeBtn.discount_amount.ToString();
+                            TextDeco = TextDecorations.Strikethrough;
+                        } else {
+                            ProductMRP = "";
+                            ProductDiscountPrice = "";
+                        }
+                    }
                 } else {
                     btn.BackgroundColor = (Color)Application.Current.Resources["LightGray"];
                 }
@@ -60,6 +140,24 @@ namespace ScanAndGo.ViewModels.Product {
             productPageRef.ResetBtnColors();
             btn.BackgroundColor = (Color)Application.Current.Resources["FadedBlue"];
             btn.TextColor = Color.White;
+            foreach (var button in product.variants) {
+                if (button.title.Equals(btn.Text)) {
+                    if (button.discount_amount == null) {
+                        ProductFinalPrice = button.net_price.ToString();
+                        product.Price = ProductFinalPrice;
+                    } else {
+                        ProductFinalPrice = button.net_price.ToString();
+                        if (button.discount_amount > 0) {
+                            ProductMRP = button.price.ToString();
+                            ProductDiscountPrice = button.discount_amount.ToString();
+                            TextDeco = TextDecorations.Strikethrough;
+                        } else {
+                            ProductMRP = "";
+                            ProductDiscountPrice = "";
+                        }
+                    }
+                }
+            }
         }
 
         string _productType;
@@ -68,12 +166,10 @@ namespace ScanAndGo.ViewModels.Product {
             set { SetProperty(ref _productType, value, "ProductType"); }
         }
 
-
         public ProductDisplayViewModel(INavigation navigation, ProductDisplayPage productPage) {
             productPageRef = productPage;
             navigationRef = navigation;
-            AddToCartCommand = new Command(() =>
-            {
+            AddToCartCommand = new Command(() => {
 
             });
         }
@@ -95,8 +191,7 @@ namespace ScanAndGo.ViewModels.Product {
             }
         }
 
-        public ICommand AddToCartCommand
-        {
+        public ICommand AddToCartCommand {
             get;
             set;
         }
