@@ -19,6 +19,8 @@
     <Folder Include="Views\HeaderView\" />
     <PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.4.1" />
     <PackageReference Include="Xamarin.Essentials" Version="0.11.0-preview" />
+    <Folder Include="Views\Animatation\" />
+    <Folder Include="DependencyServices\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Blocks\" />

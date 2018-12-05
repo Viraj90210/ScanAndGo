@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ScanAndGo.Views.Animatation.AnimatationPage">
+    <ContentPage.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="20,0,20,0">
+            <StackLayout x:Name="BarcodeLayout" VerticalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <Image HeightRequest="200" WidthRequest="200" x:Name="QRCodeImg" Source="AnimationQRCode.png"></Image>
+            </StackLayout>
+            <BoxView x:Name="Lazer" BackgroundColor="#B3FF0032" VerticalOptions="Center" HeightRequest="5" HorizontalOptions="Fill" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" />
+            <StackLayout IsVisible="false" x:Name="DoneLayout" VerticalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <Image HeightRequest="200" WidthRequest="200" x:Name="DoneImg" Source="DoneImg.png"/>
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

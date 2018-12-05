@@ -1,9 +1,6 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using ScanAndGo.Views;
-using ScanAndGo.Views.Pages;
-using ScanAndGo.ViewModels.Pages;
+using ScanAndGo.Views.Animatation;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace ScanAndGo {
@@ -12,7 +9,8 @@ namespace ScanAndGo {
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new LandingPageView(){BindingContext = new LandingPageViewModel()});
+            MainPage = new NavigationPage(new AnimatationPage());
+            //MainPage = new NavigationPage(new LandingPageView(){BindingContext = new LandingPageViewModel()});
         }
 
         protected override void OnStart() {

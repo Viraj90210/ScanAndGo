@@ -23,7 +23,7 @@
 	<key>MinimumOSVersion</key>
 	<string>10.0</string>
 	<key>CFBundleDisplayName</key>
-	<string>ScanAndGo</string>
+	<string>Scan &amp; Go</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.jda.ScanAndGo</string>
 	<key>CFBundleVersion</key>
@@ -31,7 +31,7 @@
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
-	<string>ScanAndGo</string>
+	<string>Scan &amp; Go</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>NSCameraUsageDescription</key>
@@ -39,6 +39,10 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Bangers-Regular.ttf</string>
+	</array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>paytm</string>
 	</array>
 </dict>
 </plist>
