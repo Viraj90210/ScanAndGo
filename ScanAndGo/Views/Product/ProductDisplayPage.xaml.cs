@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using ScanAndGo.ViewModels.Product;
 using Xamarin.Forms;
 
@@ -8,7 +9,6 @@ namespace ScanAndGo.Views.Product {
     public partial class ProductDisplayPage : ContentPage {
 
         ProductDisplayViewModel productViewModel;
-
 
         public ProductDisplayPage(string barcodeValue) {
             InitializeComponent();
@@ -19,7 +19,11 @@ namespace ScanAndGo.Views.Product {
             }
             productViewModel = new ProductDisplayViewModel(Navigation, this);
             BindingContext = productViewModel;
-            productViewModel.GetProductInfo(barcodeValue);
+            LoadBarCodeData(barcodeValue);
+        }
+
+        private async Task LoadBarCodeData(string barcodeValue) {
+            await productViewModel.GetProductInfo(barcodeValue);
         }
 
         void DecreaseQuantity(object sender, System.EventArgs e) {

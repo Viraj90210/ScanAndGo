@@ -11,7 +11,6 @@ namespace ScanAndGo.Views {
         public MainPage(string barcodeValue) {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            //Children.Add(new LandingPageView());
             Children.Add(new ProductDisplayPage(barcodeValue));
             Children.Add(new CartPage());
             Children.Add(new AboutPage());

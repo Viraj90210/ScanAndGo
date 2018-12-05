@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Windows.Input;
+using System.Threading.Tasks;
 using ScanAndGo.Models;
 using ScanAndGo.Services;
 using ScanAndGo.Views.Product;
@@ -22,17 +23,32 @@ namespace ScanAndGo.ViewModels.Product {
             set { SetProperty(ref _productName, value, "ProductName"); }
         }
 
-        internal void LoadSizeButtons(List<Models.Size> sizes) {
+        Command ClickBackCommand;
+        public Command ClickBack {
+            get {
+                return ClickBackCommand ?? (ClickBackCommand = new Command(ExecuteBack));
+            }
+        }
+
+        void ExecuteBack() {
+            navigationRef.PopAsync();
+        }
+
+        internal void LoadSizeButtons(List<Variant> sizes) {
             List<View> buttons = new List<View>();
-            foreach (var sizeBtn in product.sizes) {
+            foreach (var sizeBtn in product.variants) {
                 var btn = new Button {
-                    Text = sizeBtn.SizeName,
+                    Text = sizeBtn.title,
                     TextColor = Color.White,
-                    BackgroundColor = (Color)Application.Current.Resources["LightGray"],
                     VerticalOptions = LayoutOptions.Center,
                     HorizontalOptions = LayoutOptions.Start,
                     WidthRequest = 70
                 };
+                if (product.ScannedBarcode.Equals(sizeBtn.barcode)) {
+                    btn.BackgroundColor = (Color)Application.Current.Resources["FadedBlue"];
+                } else {
+                    btn.BackgroundColor = (Color)Application.Current.Resources["LightGray"];
+                }
                 btn.Clicked += Btn_Clicked;
                 buttons.Add(btn);
             }
@@ -62,14 +78,18 @@ namespace ScanAndGo.ViewModels.Product {
             });
         }
 
-        internal async void GetProductInfo(string ID) {
+        internal async Task GetProductInfo(string ID) {
             try {
                 APIService aPIService = new APIService();
                 product = await aPIService.GetProductByID(ID);
-                ProductImg = product.photoUrl;
-                ProductName = product.name;
-                ProductType = product.type;
-                LoadSizeButtons(product.sizes);
+                if (product.IsSuccess) {
+                    ProductImg = product.photoUrl;
+                    ProductName = product.title;
+                    ProductType = product.type;
+                    LoadSizeButtons(product.variants);
+                } else {
+                    await productPageRef.DisplayAlert("", "There was a problem, please try again", "OK");
+                }
             } catch (Exception ex) {
                 Console.WriteLine(ex.Message);
             }

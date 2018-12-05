@@ -52,15 +52,11 @@ namespace ScanAndGo.Views.Animatation {
             await DoneImg.ScaleTo(0.2);
             await DoneImg.ScaleTo(0.3);
             await DoneImg.ScaleTo(0.4);
-            await DoneImg.ScaleTo(0.5);
-            await DoneImg.ScaleTo(0.6);
-            await DoneImg.ScaleTo(0.7);
-            await DoneImg.ScaleTo(0.8);
             Device.StartTimer(new TimeSpan(0, 0, 3), LaunchMainPage);
         }
 
         bool LaunchMainPage() {
-            App.Current.MainPage.Navigation.PushModalAsync(new LandingPageView() { BindingContext = new LandingPageViewModel() });
+            App.Current.MainPage.Navigation.PushAsync(new LandingPageView() { BindingContext = new LandingPageViewModel() });
             return false;
 
         }
