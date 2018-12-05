@@ -118,8 +118,8 @@ namespace ScanAndGo.ViewModels.Product {
                     } else {
                         ProductFinalPrice = sizeBtn.net_price.ToString();
                         if (sizeBtn.discount_amount > 0) {
-                            ProductMRP = sizeBtn.price.ToString();
-                            ProductDiscountPrice = sizeBtn.discount_amount.ToString();
+                            ProductMRP = "MRP: " + sizeBtn.price.ToString();
+                            ProductDiscountPrice = "Discount: " + sizeBtn.discount_amount.ToString();
                             TextDeco = TextDecorations.Strikethrough;
                         } else {
                             ProductMRP = "";
@@ -148,8 +148,8 @@ namespace ScanAndGo.ViewModels.Product {
                     } else {
                         ProductFinalPrice = button.net_price.ToString();
                         if (button.discount_amount > 0) {
-                            ProductMRP = button.price.ToString();
-                            ProductDiscountPrice = button.discount_amount.ToString();
+                            ProductMRP = "MRP: " + button.price.ToString() + "/-";
+                            ProductDiscountPrice = "Discount: " + button.discount_amount.ToString();
                             TextDeco = TextDecorations.Strikethrough;
                         } else {
                             ProductMRP = "";

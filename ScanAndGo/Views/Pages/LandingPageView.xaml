@@ -38,7 +38,7 @@
             <local:CircularBubbleView AbsoluteLayout.LayoutFlags="PositionProportional"
                                       AbsoluteLayout.LayoutBounds="0.3,0.5,175,175" 
                                       CornerRadius="87.5"
-                                      BackgroundColor="Olive" 
+                                      BackgroundColor="#F5A622" 
                                       BindingContext="{Binding LocateProductContext}">
                 
             </local:CircularBubbleView>

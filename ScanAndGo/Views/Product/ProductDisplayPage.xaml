@@ -10,35 +10,28 @@
                             <Image Source="{Binding ProductImg}" HeightRequest="150" />
                         </StackLayout>
                         <StackLayout Spacing="2" BackgroundColor="#f2f2f2" Padding="0,5,0,5">
-                            <Label Text="{Binding ProductName}" FontSize="Large" />
+                            <Label Text="{Binding ProductName}" FontAttributes="Bold" FontSize="Large" />
                             <Label Text="{Binding ProductType}" FontSize="Medium" />
                             <!--<Label Text="{Binding ProductExtraDesc}"  FontSize="Medium" />-->
                         </StackLayout>
                     </StackLayout>
-                    <StackLayout Orientation="Horizontal" Spacing="10">
-                        <Label Text="{Binding ProductFinalPrice}" FontAttributes="Bold" FontSize="Large"/>
+                    <StackLayout Orientation="Horizontal" Spacing="10" Padding="0,5,0,0">
+                        <Label Text="{Binding ProductFinalPrice}" FontAttributes="Bold" FontSize="24"/>
                         <Label Text="{Binding ProductMRP}" FontAttributes="Italic" FontSize="Medium" />
                         <Label Text="{Binding ProductDiscountPrice}" FontAttributes="Italic" FontSize="Medium" />
                     </StackLayout>
                     <BoxView HeightRequest="7" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" />
                     <StackLayout>
                         <StackLayout x:Name="SizeLayout" HorizontalOptions="Fill">
-                            <Label Text="Size"  FontSize="Medium" />
+                            <Label Text="Size" FontAttributes="Bold" FontSize="Medium" />
                             <ScrollView Orientation="Horizontal">
-                                <StackLayout x:Name="ButtonBar" VerticalOptions="Center" Orientation="Horizontal" Spacing="10">
-                                    <!--<Button ClassId="btnSize" TextColor="Black" BackgroundColor="{StaticResource LightGray}" Clicked="SizeSelected" Text=" UK 4 - EU 37 " VerticalOptions="Center" HorizontalOptions="Start" />
-                                    <Button ClassId="btnSize" TextColor="Black" BackgroundColor="{StaticResource LightGray}" Clicked="SizeSelected" Text=" UK 5 - EU 40 " VerticalOptions="Center" HorizontalOptions="Start" />
-                                    <Button ClassId="btnSize" TextColor="Black" BackgroundColor="{StaticResource LightGray}" Clicked="SizeSelected" Text=" UK 6 - EU 42 " VerticalOptions="Center" HorizontalOptions="Start" />
-                                    <Button ClassId="btnSize" TextColor="Black" BackgroundColor="{StaticResource LightGray}" Clicked="SizeSelected" Text=" UK 7 - EU 44 " VerticalOptions="Center" HorizontalOptions="Start" />
-                                    <Button ClassId="btnSize" TextColor="Black" BackgroundColor="{StaticResource LightGray}" Clicked="SizeSelected" Text=" UK 8 - EU 46 " VerticalOptions="Center" HorizontalOptions="Start" />-->
-                                </StackLayout>
+                                <StackLayout x:Name="ButtonBar" VerticalOptions="Center" Orientation="Horizontal" Spacing="10"/>
                             </ScrollView>
                         </StackLayout>
                         <BoxView HeightRequest="10" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" />
                         <StackLayout>
-                            <Label Text="Quantity" FontSize="Medium" />
+                            <Label Text="Quantity" FontAttributes="Bold" FontSize="Medium" />
                             <StackLayout HeightRequest="40" Orientation="Horizontal" Spacing="2">
-                                <!--<Button WidthRequest="40" Clicked="DecreaseQuantity"/>-->
                                 <StackLayout WidthRequest="40" BackgroundColor="{StaticResource LightGray}">
                                     <Label x:Name="lblDecrease" Text="-"  FontSize="Large" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                                     <StackLayout.GestureRecognizers>
@@ -54,12 +47,11 @@
                                         <TapGestureRecognizer Command="{Binding IncreaseQuantity}" NumberOfTapsRequired="1" />
                                     </StackLayout.GestureRecognizers>
                                 </StackLayout>
-                                <!--<Button Text="+"  FontSize="Large" WidthRequest="40" Clicked="IncreaseQuantity"/>-->
                             </StackLayout>
                         </StackLayout>
                         <BoxView HeightRequest="10" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" />
                         <StackLayout>
-                            <Label Text="Convenience"  FontSize="Medium" />
+                            <Label Text="Convenience" FontAttributes="Bold" FontSize="Medium" />
                             <StackLayout HorizontalOptions="Start" Orientation="Horizontal" Spacing="15">
                                 <StackLayout Orientation="Horizontal" Padding="5,0,5,0">
                                     <Image ClassId="0" x:Name="TakeAwayRadio" Source="RadioCheck.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="Start">

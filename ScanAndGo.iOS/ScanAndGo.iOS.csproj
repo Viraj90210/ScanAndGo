@@ -116,6 +116,9 @@
     <BundleResource Include="Resources\caret_right.png" />
     <BundleResource Include="Resources\ic_add.png" />
     <BundleResource Include="Resources\ic_address.png" />
+    <BundleResource Include="Resources\ProductIcon.png" />
+    <BundleResource Include="Resources\ProductIcon%402x.png" />
+    <BundleResource Include="Resources\ProductIcon%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
