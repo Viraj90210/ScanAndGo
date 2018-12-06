@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Linq;
+using ScanAndGo.Views.Animatation;
 using Xamarin.Forms;
 
 namespace ScanAndGo.Views.Pages
@@ -12,6 +13,8 @@ namespace ScanAndGo.Views.Pages
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             Title = "Scan";
+           
+
         }
     }
 }

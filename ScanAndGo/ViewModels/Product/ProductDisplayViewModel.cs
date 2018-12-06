@@ -6,11 +6,13 @@ using ScanAndGo.Models;
 using ScanAndGo.Services;
 using ScanAndGo.Views.Product;
 using Xamarin.Forms;
+using ScanAndGo.Views.Pages;
+using ScanAndGo.ViewModels.Pages;
 
 namespace ScanAndGo.ViewModels.Product {
     public class ProductDisplayViewModel : BaseViewModel {
         ProductDisplayPage productPageRef;
-        ProductModel product;
+        public ProductModel product { get; set; } = new ProductModel();
         string _productImg;
         public string ProductImg {
             get { return _productImg; }
@@ -170,8 +172,35 @@ namespace ScanAndGo.ViewModels.Product {
             productPageRef = productPage;
             navigationRef = navigation;
             AddToCartCommand = new Command(() => {
-
+            AddToCartCommand = new Command(async () =>
+            {
+                await OnAddToCartCommandAsync();
             });
+            NavigateToCartCommand = new Command(() =>
+            {
+                Application.Current.MainPage.Navigation.PushAsync(new MyCartPageView
+                {
+                    BindingContext = new MyCartPageViewModel()
+                });
+            });
+        }
+
+        private async Task OnAddToCartCommandAsync()
+        {
+            App.ProductsInCart.Add(product);
+            string action = await  Application.Current.MainPage.DisplayActionSheet("Product Added in cart", "Continue shopping", "Remove from cart" ,new string[] { "Go to cart" });
+            if(!string.IsNullOrEmpty(action))
+            {
+                if (action.Equals("Go to cart"))
+                {
+                    NavigateToCartCommand?.Execute(null);
+                }
+                else if (action.Equals("Remove from cart"))
+                {
+                    App.ProductsInCart.Remove(product);
+                    await Application.Current.MainPage.DisplayAlert("Alert", "Product removed from cart", "OK");
+                }
+            }
         }
 
         internal async Task GetProductInfo(string ID) {
@@ -184,7 +213,7 @@ namespace ScanAndGo.ViewModels.Product {
                     ProductType = product.type;
                     LoadSizeButtons(product.variants);
                 } else {
-                    await productPageRef.DisplayAlert("", "There was a problem, please try again", "OK");
+                    await productPageRef.DisplayAlert("Alert", "There was a problem, please try again", "OK");
                 }
             } catch (Exception ex) {
                 Console.WriteLine(ex.Message);
@@ -192,6 +221,12 @@ namespace ScanAndGo.ViewModels.Product {
         }
 
         public ICommand AddToCartCommand {
+            get;
+            set;
+        }
+
+        public ICommand NavigateToCartCommand
+        {
             get;
             set;
         }

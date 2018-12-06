@@ -1,10 +1,14 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using ScanAndGo.Views.Animatation;
+using ScanAndGo.Models;
+using System.Collections.Generic;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace ScanAndGo {
-    public partial class App : Application {
+    public partial class App : Application 
+    {
+        public static IList<ProductModel> ProductsInCart { get; set; }= new List<ProductModel>();
 
         public App()
         {

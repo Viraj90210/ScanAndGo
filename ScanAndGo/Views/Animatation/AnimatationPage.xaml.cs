@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using ScanAndGo.DependencyServices;
 using ScanAndGo.ViewModels.Pages;
 using ScanAndGo.Views.Pages;
@@ -21,7 +23,8 @@ namespace ScanAndGo.Views.Animatation {
             await Lazer.TranslateTo(0, -120, 700);
             await Lazer.TranslateTo(0, 0, 700);
 
-            PresentNextAnimation();
+            //PresentNextAnimation();
+            Device.StartTimer(new TimeSpan(0, 0, 2), LaunchMainPage);
         }
 
         void PresentNextAnimation() {
@@ -56,7 +59,13 @@ namespace ScanAndGo.Views.Animatation {
         }
 
         bool LaunchMainPage() {
-            App.Current.MainPage.Navigation.PushAsync(new LandingPageView() { BindingContext = new LandingPageViewModel() });
+            Application.Current.MainPage.Navigation.PushAsync(new LandingPageView() { BindingContext = new LandingPageViewModel() });
+
+            var page = Application.Current.MainPage.Navigation.NavigationStack.Where(x => x.GetType() == typeof(AnimatationPage)).FirstOrDefault();
+            if (page != null)
+            {
+                Application.Current.MainPage.Navigation.RemovePage(page);
+            }
             return false;
 
         }

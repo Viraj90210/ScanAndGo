@@ -71,6 +71,12 @@ namespace ScanAndGo.Views.Blocks
                 get;
                 set;
             }
+
+            public object Model
+            {
+                get;
+                set;
+            }
         }
     }
 }

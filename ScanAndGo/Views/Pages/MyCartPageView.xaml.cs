@@ -10,6 +10,7 @@ namespace ScanAndGo.Views.Pages
         public MyCartPageView()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
             if (Device.RuntimePlatform == Device.iOS)
             {
                 Padding = new Thickness(0, 20, 0, 0);

@@ -34,7 +34,7 @@
                 </StackLayout.WidthRequest>
                 <Image x:Name="CartImg" Source="ShoppingCart.png" VerticalOptions="CenterAndExpand" HeightRequest="35">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ClickBack}" />
+                        <TapGestureRecognizer Command="{Binding NavigateToCartCommand}" />
                     </Image.GestureRecognizers>
                 </Image>
             </StackLayout>

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Windows.Input;
+using ScanAndGo.Models;
 using ScanAndGo.ViewModels.Product;
 using Xamarin.Forms;
 
@@ -9,6 +10,7 @@ namespace ScanAndGo.Views.Product {
     public partial class ProductDisplayPage : ContentPage {
 
         ProductDisplayViewModel productViewModel;
+
 
         public ProductDisplayPage(string barcodeValue) {
             InitializeComponent();
@@ -19,11 +21,7 @@ namespace ScanAndGo.Views.Product {
             }
             productViewModel = new ProductDisplayViewModel(Navigation, this);
             BindingContext = productViewModel;
-            LoadBarCodeData(barcodeValue);
-        }
-
-        private async Task LoadBarCodeData(string barcodeValue) {
-            await productViewModel.GetProductInfo(barcodeValue);
+            productViewModel.GetProductInfo(barcodeValue);
         }
 
         void DecreaseQuantity(object sender, System.EventArgs e) {
@@ -61,9 +59,18 @@ namespace ScanAndGo.Views.Product {
             lblTakeAway.TextColor = (Color)Application.Current.Resources["FadedBlue"];
             lblDelivery.TextColor = Color.Black;
             ShakeAnimation();
+            if(this.BindingContext is ProductDisplayViewModel)
+            {
+                (this.BindingContext as ProductDisplayViewModel).product.DeliveryType = DeliveryType.TakeAway;
+            }
+
         }
 
         void Handle_TappedDL(object sender, System.EventArgs e) {
+            if (this.BindingContext is ProductDisplayViewModel)
+            {
+                (this.BindingContext as ProductDisplayViewModel).product.DeliveryType = DeliveryType.HomeDelivery;
+            }
             TakeAwayRadio.Source = "RadioUncheck.png";
             DeliveryRadio.Source = "RadioCheck.png";
             lblTakeAway.TextColor = Color.Black;
@@ -98,5 +105,6 @@ namespace ScanAndGo.Views.Product {
         void AddItemToCart(object sender, System.EventArgs e) {
 
         }
+
     }
 }

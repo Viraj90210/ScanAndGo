@@ -1,6 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
+using ScanAndGo.Models;
+using ScanAndGo.Services;
+using ScanAndGo.Services.Payloads;
+using ScanAndGo.Views.Pages;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using static ScanAndGo.Views.Blocks.CartListBlockView;
 
@@ -11,44 +17,73 @@ namespace ScanAndGo.ViewModels.Pages
         public MyCartPageViewModel()
         {
             this.PropertyChanged += Handle_PropertyChanged;
-            this.AddressLine1 = "Chinchpokli bandar khaugali, haveri";
+            this.AddressLine1 = "Jda software, Meenakshi tower, 9th floor";
             this.AddressLine2 = "Hyderabad, 500008";
             this.AddAddressCommand = new Command(() => OnNewAddressCommand());
             this.HomeCommand = new Command(() => OnHomeCommand());
-            Items = new ObservableCollection<object>()
+            this.PayCommand = new Command(async () => await OnPayCommandAsync());
+            PopulateCartList();
+        }
+
+        private void PopulateCartList()
+        {
+            if (App.ProductsInCart != null && App.ProductsInCart.Count > 0)
             {
-                new Grouping<GroupListModel,ListItem>(new GroupListModel{
-                    GroupTitle = "Take away items",
-                    GroupImageSource = ImageSource.FromFile("ShoppingCart.png"),
-                    GroupQuantity=2},new ObservableCollection<ListItem>{
-                    new ListItem{
-                        Title = "Woodland shoes from england with extra",
-                        Price = 199.0f,
-                        Quantity = 1,
-                        Size = "7 UK",
-                        ImageSource = ImageSource.FromFile("payment.png")
-                    },
-                    new ListItem{
-                        Title = "Roadstart shirt Maroon",
-                        Price = 23,
-                        Size = "M/40",
-                        Quantity = 2,
-                        ImageSource = ImageSource.FromFile("payment.png")
+                Items = new ObservableCollection<object>();
+                var deliveryProducts = App.ProductsInCart.Where(p => p.DeliveryType == DeliveryType.HomeDelivery)?.ToList();
+                var takeAwayProducts = App.ProductsInCart.Where(p => p.DeliveryType == DeliveryType.TakeAway)?.ToList();
+                if (takeAwayProducts != null && takeAwayProducts.Count > 0)
+                {
+                    var groupModel = new GroupListModel
+                    {
+                        GroupTitle = "Take away items",
+                        GroupImageSource = ImageSource.FromFile("ic_take_away.png"),
+                        GroupQuantity = takeAwayProducts.Count
+                    };
+                    var listItems = new ObservableCollection<ListItem>();
+                    foreach (ProductModel product in takeAwayProducts)
+                    {
+                       var listItem =  new ListItem
+                        {
+                            Title = product.title,
+                            Price = product.Price,
+                            Quantity = product.Quantity,
+                            Size = product.Size,
+                            Model = product
+                        };
+                        if(!string.IsNullOrEmpty(product.photoUrl))
+                        {
+                            listItem.ImageSource = ImageSource.FromUri(new Uri(product.photoUrl));
+                        }
+                        listItems.Add(listItem);
                     }
-                }),
-                new Grouping<GroupListModel,ListItem>(new GroupListModel{
-                    GroupTitle = "Take away items",
-                    GroupImageSource = ImageSource.FromFile("ShoppingCart.png"),
-                    GroupQuantity=1},new ObservableCollection<ListItem>{
-                    new ListItem{
-                        Title = "Spyker Jeans Black shadow",
-                        Price = 102311,
-                        Size = "32",
-                         Quantity = 5,
-                        ImageSource = ImageSource.FromFile("payment.png")
+                    Items.Add(new Grouping<GroupListModel, ListItem>(groupModel, listItems));
+                }
+                if (deliveryProducts != null && deliveryProducts.Count > 0)
+                {
+                    var groupModel = new GroupListModel
+                    {
+                        GroupTitle = "Delivery items",
+                        GroupImageSource = ImageSource.FromFile("ic_deliver_items.png"),
+                        GroupQuantity = takeAwayProducts.Count
+                    };
+                    var listItems = new ObservableCollection<ListItem>();
+                    foreach (ProductModel product in deliveryProducts)
+                    {
+                        var listItem = new ListItem
+                        {
+                            Title = product.title,
+                            Price = product.Price,
+                            Quantity = product.Quantity,
+                            Size = product.Size,
+                            ImageSource = ImageSource.FromUri(new Uri(product.photoUrl)),
+                            Model = product
+                        };
+                        listItems.Add(listItem);
                     }
-                })
-            };
+                    Items.Add(new Grouping<GroupListModel, ListItem>(groupModel, listItems));
+                }
+            }
         }
 
         private void OnHomeCommand()
@@ -61,6 +96,45 @@ namespace ScanAndGo.ViewModels.Pages
             Application.Current.MainPage.DisplayAlert("Add address", "User can add new address here for Delivery items", "OK");
         }
 
+        private async System.Threading.Tasks.Task OnPayCommandAsync()
+        {
+            //Application.Current.MainPage.DisplayAlert("Payment", "Go to payment page", "OK");
+          try
+            {
+                if( Connectivity.NetworkAccess == NetworkAccess.Internet)
+                {
+                    APIService aPIService = new APIService();
+                    OrderPayload orderPayload = new OrderPayload();
+                    // orderPayload.Id = DateTime.UtcNow.Ticks;
+                    orderPayload.Id = 1544012550;
+                    orderPayload.Total = App.ProductsInCart.Count;
+                    orderPayload.Details = new System.Collections.Generic.List<Detail>();
+                    foreach (var product in App.ProductsInCart)
+                    {
+                        Detail detail = new Detail
+                        {
+                            Barcode = product.ScannedBarcode,
+                            Title = product.title,
+                            Price = 13499,
+                            Quantity = 1,
+                            Type = product.DeliveryType == DeliveryType.TakeAway ? "TAKEAWAY" : "DELIVERY",
+                            Product = "wLmX1iO821MPZBuf88Qd"
+                        };
+                        orderPayload.Details.Add(detail);
+                    }
+                    var result = await aPIService.PostOrder(orderPayload);
+                    await Application.Current.MainPage.Navigation.PushAsync(new PaymentBarcodePageView {
+                        BindingContext = new PaymentBarcodePageViewModel(orderPayload.Id.ToString()){}
+
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
         void Handle_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if(e.PropertyName.Equals(nameof(SelectedItem)))
@@ -71,7 +145,6 @@ namespace ScanAndGo.ViewModels.Pages
                 SelectedItem = null;
             }
         }
-
 
         public ObservableCollection<object> Items
         {
@@ -104,6 +177,18 @@ namespace ScanAndGo.ViewModels.Pages
         }
 
         public ICommand HomeCommand
+        {
+            get;
+            set;
+        }
+
+        public ICommand PayCommand
+        {
+            get;
+            set;
+        }
+
+        public float TotalPrice
         {
             get;
             set;

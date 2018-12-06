@@ -8,34 +8,52 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="130"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
             </Grid.RowDefinitions>
-            <StackLayout Orientation="Horizontal"
-                         Grid.Row="0"
-                         >
-                <Image Source="houseoutline" 
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Image Source="houseoutline" Grid.Column="0"
                        HeightRequest="35"
                        WidthRequest="35"
                        HorizontalOptions="Start"
                        Aspect="AspectFit"
                        Margin="5,0,0,0"
-                       VerticalOptions="CenterAndExpand"></Image>
-                 <Image.GestureRecognizers>
+                       VerticalOptions="CenterAndExpand">
+                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding HomeCommand}"></TapGestureRecognizer>
-                </Image.GestureRecognizers>
-                <Label Text="My Cart"
+                    </Image.GestureRecognizers>
+                </Image>
+                
+                <Label Text="My Cart" Grid.Column="1"
                        FontSize="Large"
                        HorizontalOptions="CenterAndExpand"
                        VerticalOptions="Center" 
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
                        ></Label>
-            </StackLayout>
+               <!-- <Image Source="houseoutline" Grid.Column="2"
+                       HeightRequest="35"
+                       WidthRequest="35"
+                       HorizontalOptions="Start"
+                       Aspect="AspectFit"
+                       Margin="5,0,0,0"
+                       VerticalOptions="CenterAndExpand">
+                     <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PayCommand}"></TapGestureRecognizer>
+                      </Image.GestureRecognizers>
+                </Image>-->
+            </Grid>
+         <StackLayout Orientation="Vertical" Grid.Row="1">
             <local:CartListBlockView ItemsSource="{Binding Items}"
-                                     Grid.Row="1"
                                      IsGroupingEnabled="true"
                                    >
             </local:CartListBlockView>
-           <StackLayout Orientation="Vertical" Grid.Row="2" Spacing="5" VerticalOptions="Start" 
-                        HorizontalOptions="StartAndExpand" Margin="10,10,0,0">
+          <StackLayout Orientation="Vertical" Spacing="5" VerticalOptions="Start" 
+                        HorizontalOptions="StartAndExpand" Margin="10,10,0,0" >
                 <StackLayout Orientation="Horizontal">
                     <Image HeightRequest="20" WidthRequest="20" Source="ic_address"></Image>
                     <Label Text="Delivery Address" TextColor="#2980b9" FontSize="Large" ></Label>
@@ -52,6 +70,21 @@
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
             </StackLayout>
+        </StackLayout>
+           
+          <StackLayout Orientation="Horizontal" 
+                       BackgroundColor="#3498db"
+                       Grid.Row="2">
+             <Label Text="{Binding TotalPrice,StringFormat='Pay : INR {0:F2}/-'}"
+                    FontSize="Large"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    TextColor="White"
+                    HorizontalTextAlignment="Center"></Label>
+              <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding PayCommand}"></TapGestureRecognizer>
+              </StackLayout.GestureRecognizers>
+            </StackLayout> 
         </Grid>
     </ContentPage.Content>
 </ContentPage>

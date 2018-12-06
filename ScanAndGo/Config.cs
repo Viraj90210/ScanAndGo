@@ -7,6 +7,7 @@
         #region API-Methods
         public const string GetProductByID = "products/";
         public const string Scan = "scan/";
+        public const string PostOrderUrl = "order";
         #endregion
     }
 }

@@ -119,6 +119,10 @@
     <BundleResource Include="Resources\ProductIcon.png" />
     <BundleResource Include="Resources\ProductIcon%402x.png" />
     <BundleResource Include="Resources\ProductIcon%403x.png" />
+    <BundleResource Include="Resources\locate_white.png" />
+    <BundleResource Include="Resources\Scan_white.png" />
+    <BundleResource Include="Resources\ic_deliver_items.png" />
+    <BundleResource Include="Resources\ic_take_away.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
